@@ -1,56 +1,22 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>自我鼓勵雙件套 👏 鼓掌積功德</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自我鼓勵系統 - 舒心雙件套</title>
   <style>
     :root {
-      --bg-color: #FFF9ED;
-      --card-bg: #FFFFFF;
-      --primary: #FF8A5B;
-      --primary-hover: #FA7945;
-      --secondary: #FFD166;
-      --accent: #FF5A5F;
-      --text-main: #332722;
-      --text-sub: #7A6F68;
-      --hand-stroke: #3E322D;
-      --hand-fill: #FFE3D1;
-      --shadow: 0 10px 25px rgba(255, 138, 91, 0.15);
-      --crit-color: #FF4757;
-      --gold-color: #FFA502;
-    }
-
-    [data-theme="cyber"] {
-      --bg-color: #16181D;
-      --card-bg: #22262E;
-      --primary: #00F5D4;
-      --primary-hover: #00DBBE;
-      --secondary: #FFE600;
-      --accent: #FF007F;
-      --text-main: #F1F5F9;
-      --text-sub: #94A3B8;
-      --hand-stroke: #E2E8F0;
-      --hand-fill: #2D3748;
-      --shadow: 0 10px 30px rgba(0, 245, 212, 0.2);
-      --crit-color: #FF007F;
-      --gold-color: #FFE600;
-    }
-
-    [data-theme="candy"] {
-      --bg-color: #F0F4FF;
-      --card-bg: #FFFFFF;
-      --primary: #7B2CBF;
-      --primary-hover: #6822A3;
-      --secondary: #FF9EAA;
-      --accent: #FF4D6D;
-      --text-main: #240046;
-      --text-sub: #6C757D;
-      --hand-stroke: #240046;
-      --hand-fill: #FFCCD5;
-      --shadow: 0 10px 25px rgba(123, 44, 191, 0.15);
-      --crit-color: #FF4D6D;
-      --gold-color: #FFB703;
+      --bg-cream: #FAF7F2;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --wood-brown: #8D6E63;
+      --wood-dark: #5D4037;
+      --matcha-green: #7A9A7E;
+      --matcha-dark: #4F6D53;
+      --warm-orange: #E09F67;
+      --text-main: #3E3B38;
+      --text-muted: #8C8782;
+      --shadow-soft: 0 10px 28px rgba(93, 64, 55, 0.08);
+      --border-soft: 1px solid rgba(141, 110, 99, 0.15);
     }
 
     * {
@@ -58,673 +24,482 @@
       margin: 0;
       padding: 0;
       user-select: none;
-      -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
-      background-color: var(--bg-color);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      background: linear-gradient(145deg, #FAF7F2 0%, #F1EBE3 100%);
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       padding: 18px;
-      transition: background-color 0.3s ease, color 0.3s ease;
-      overflow-x: hidden;
     }
 
     .app-container {
       width: 100%;
-      max-width: 460px;
+      max-width: 420px;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 32px 24px;
+      box-shadow: var(--shadow-soft);
+      border: var(--border-soft);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
+      position: relative;
+      overflow: hidden;
+      min-height: 580px;
     }
 
-    /* 頂部狀態列 */
-    .top-bar {
+    .header-nav {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 8px;
+      margin-bottom: 24px;
     }
 
-    .title-group h1 {
-      font-size: 1.55rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .title-group p {
-      font-size: 0.85rem;
-      color: var(--text-sub);
-      margin-top: 2px;
-    }
-
-    .control-buttons {
-      display: flex;
-      gap: 8px;
-    }
-
-    .icon-btn {
-      background: var(--card-bg);
-      border: 1px solid rgba(120, 120, 120, 0.15);
-      color: var(--text-main);
-      padding: 8px 12px;
-      border-radius: 99px;
+    .back-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 15px;
       cursor: pointer;
-      font-size: 0.85rem;
-      font-weight: 600;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-      transition: transform 0.15s, background-color 0.2s;
-    }
-
-    .icon-btn:active {
-      transform: scale(0.92);
-    }
-
-    /* 功德與計數面板 */
-    .score-card {
-      width: 100%;
-      background: var(--card-bg);
-      border-radius: 24px;
-      padding: 18px 24px;
-      box-shadow: var(--shadow);
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      border: 2px solid rgba(255, 138, 91, 0.12);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-box {
-      text-align: center;
-      flex: 1;
-    }
-
-    .stat-label {
-      font-size: 0.8rem;
-      color: var(--text-sub);
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    .stat-num {
-      font-size: 2.1rem;
-      font-weight: 900;
-      color: var(--primary);
-      margin-top: 2px;
-      line-height: 1.1;
-      font-variant-numeric: tabular-nums;
-    }
-
-    .stat-divider {
-      width: 1px;
-      height: 38px;
-      background: rgba(120, 120, 120, 0.15);
-    }
-
-    /* 鼓掌互動主區域 */
-    .stage {
-      position: relative;
-      width: 100%;
-      height: 340px;
-      background: var(--card-bg);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      border: 3px dashed var(--primary);
-      transition: transform 0.08s ease, border-color 0.2s ease;
-      touch-action: manipulation;
-    }
-
-    .stage:active {
-      transform: scale(0.965);
-    }
-
-    .clapper-visual {
-      position: relative;
-      width: 220px;
-      height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hand-svg {
-      width: 170px;
-      height: 170px;
-      transition: transform 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      filter: drop-shadow(0 6px 8px rgba(0,0,0,0.08));
-    }
-
-    .stage.clapping .hand-left {
-      transform: rotate(-16deg) translate(14px, -6px) scale(0.95);
-    }
-    .stage.clapping .hand-right {
-      transform: rotate(16deg) translate(-14px, -6px) scale(0.95);
-    }
-
-    .hand-pair {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hand-left {
-      position: absolute;
-      transform: rotate(-28deg) translate(-12px, 0);
-      transform-origin: 30% 80%;
-    }
-
-    .hand-right {
-      position: absolute;
-      transform: rotate(28deg) scaleX(-1) translate(-12px, 0);
-      transform-origin: 30% 80%;
-    }
-
-    /* 拍手火花 */
-    .sparks {
-      position: absolute;
-      top: 15px;
-      width: 100%;
-      height: 60px;
-      pointer-events: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .spark-line {
-      position: absolute;
-      width: 4px;
-      height: 18px;
-      background: var(--gold-color);
-      border-radius: 99px;
-      opacity: 0;
-      transform-origin: center bottom;
-      transition: opacity 0.15s, transform 0.15s;
-    }
-
-    .stage.clapping .spark-line {
-      opacity: 1;
-    }
-    .stage.clapping .s1 { transform: rotate(-35deg) translateY(-14px); }
-    .stage.clapping .s2 { transform: rotate(-10deg) translateY(-20px); }
-    .stage.clapping .s3 { transform: rotate(10deg) translateY(-20px); }
-    .stage.clapping .s4 { transform: rotate(35deg) translateY(-14px); }
-
-    .stage-hint {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--primary);
-      background: rgba(255, 138, 91, 0.12);
-      padding: 6px 18px;
-      border-radius: 99px;
-      letter-spacing: 1px;
-    }
-
-    /* 倍率標籤列 */
-    .multiplier-bar {
-      display: flex;
-      gap: 10px;
-      width: 100%;
-      justify-content: center;
-    }
-
-    .mult-tag {
-      padding: 5px 12px;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: 800;
-      background: var(--card-bg);
-      border: 1.5px solid rgba(120, 120, 120, 0.15);
-      color: var(--text-sub);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .mult-tag.active {
-      background: var(--secondary);
-      color: #332722;
-      border-color: transparent;
-      box-shadow: 0 4px 12px rgba(255, 209, 102, 0.4);
-      transform: scale(1.06);
-    }
-
-    /* 浮動誇獎與功德動畫 */
-    .floating-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      pointer-events: none;
-      z-index: 9999;
-      overflow: hidden;
-    }
-
-    .praise-toast {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      font-weight: 900;
-      white-space: nowrap;
-      padding: 8px 18px;
-      border-radius: 99px;
-      animation: floatUp 1.25s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.14);
-      font-size: 1.05rem;
       display: flex;
       align-items: center;
       gap: 6px;
+      transition: color 0.2s;
     }
 
-    .praise-toast.normal {
+    .back-btn:hover {
+      color: var(--wood-dark);
+    }
+
+    .app-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--wood-dark);
+      letter-spacing: 1px;
+    }
+
+    .view-panel {
+      width: 100%;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 0.35s ease-out;
+    }
+
+    .view-panel.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Screen 1: 主選單 */
+    .menu-greeting {
+      font-size: 1.45rem;
+      color: var(--wood-dark);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .menu-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 38px;
+    }
+
+    .menu-grid {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      gap: 18px;
+    }
+
+    .menu-card {
       background: #FFFFFF;
-      color: #FF8A5B;
-      border: 2px solid #FF8A5B;
+      border-radius: 20px;
+      padding: 22px 20px;
+      border: var(--border-soft);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      display: flex;
+      align-items: center;
+      text-align: left;
+      gap: 18px;
     }
 
-    .praise-toast.crit {
-      background: linear-gradient(135deg, #FF5A5F, #FF8A5B);
+    .menu-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(141, 110, 99, 0.12);
+      border-color: var(--warm-orange);
+    }
+
+    .menu-card:active {
+      transform: scale(0.98);
+    }
+
+    .menu-icon {
+      font-size: 2.3rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #F8F5F0;
+    }
+
+    .menu-info h3 {
+      font-size: 1.15rem;
+      color: var(--wood-dark);
+      margin-bottom: 4px;
+    }
+
+    .menu-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Screen 2 & 3: 互動按鈕與回饋區 */
+    .interactive-display {
+      margin: 20px 0 28px;
+      position: relative;
+    }
+
+    .interactive-circle-btn {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FFFFFF 0%, #F5EFEB 100%);
+      border: 2px solid rgba(141, 110, 99, 0.2);
+      box-shadow: 0 8px 24px rgba(141, 110, 99, 0.12);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      outline: none;
+    }
+
+    .interactive-circle-btn:active {
+      transform: scale(0.94);
+      box-shadow: 0 4px 12px rgba(141, 110, 99, 0.2);
+    }
+
+    .interactive-emoji {
+      font-size: 3.5rem;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .tap-hint {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .counter-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      background: rgba(122, 154, 126, 0.15);
+      color: var(--matcha-dark);
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 22px;
+    }
+
+    .encouragement-quote {
+      min-height: 52px;
+      font-size: 1rem;
+      color: var(--wood-dark);
+      padding: 0 16px;
+      line-height: 1.5;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 倍率選擇按鈕 (Screen 2: x3, x5, x10) */
+    .multiplier-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .mult-btn {
+      padding: 8px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(141, 110, 99, 0.25);
+      background: #FFFFFF;
+      color: var(--wood-dark);
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mult-btn.active {
+      background: var(--warm-orange);
       color: #FFFFFF;
-      font-size: 1.25rem;
-      border: 2px solid #FFFFFF;
-      box-shadow: 0 10px 30px rgba(255, 90, 95, 0.4);
-      animation: critExplosion 1.4s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+      border-color: var(--warm-orange);
     }
 
-    .merit-popup {
+    /* 浮動文字動畫 (+功德, +鼓掌) */
+    .floating-text {
       position: absolute;
-      transform: translate(-50%, -50%);
-      font-size: 1.6rem;
-      font-weight: 900;
-      color: var(--primary);
-      animation: meritFly 0.9s ease-out forwards;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      font-weight: 600;
+      color: var(--warm-orange);
+      font-size: 1.15rem;
+      pointer-events: none;
+      animation: floatUp 0.85s ease-out forwards;
+      z-index: 10;
     }
 
     @keyframes floatUp {
       0% {
-        opacity: 0;
-        transform: translate(-50%, 15px) scale(0.7);
-      }
-      20% {
         opacity: 1;
-        transform: translate(-50%, -20px) scale(1.08);
-      }
-      80% {
-        opacity: 1;
-        transform: translate(-50%, -65px) scale(1);
+        transform: translateY(0) scale(1);
       }
       100% {
         opacity: 0;
-        transform: translate(-50%, -105px) scale(0.9);
+        transform: translateY(-55px) scale(1.15);
       }
-    }
-
-    @keyframes critExplosion {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, 20px) scale(0.5) rotate(-6deg);
-      }
-      25% {
-        opacity: 1;
-        transform: translate(-50%, -25px) scale(1.22) rotate(4deg);
-      }
-      75% {
-        opacity: 1;
-        transform: translate(-50%, -75px) scale(1.05) rotate(0deg);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -125px) scale(0.95);
-      }
-    }
-
-    @keyframes meritFly {
-      0% {
-        opacity: 0;
-        transform: translate(-50%, 0) scale(0.6);
-      }
-      30% {
-        opacity: 1;
-        transform: translate(-50%, -30px) scale(1.15);
-      }
-      100% {
-        opacity: 0;
-        transform: translate(-50%, -85px) scale(0.85);
-      }
-    }
-
-    .particle {
-      position: absolute;
-      pointer-events: none;
-      border-radius: 50%;
-      animation: particlePop 0.75s ease-out forwards;
-    }
-
-    @keyframes particlePop {
-      0% {
-        transform: translate(0, 0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translate(var(--tx), var(--ty)) scale(0);
-        opacity: 0;
-      }
-    }
-
-    /* 即時鼓勵長條 */
-    .praise-banner {
-      width: 100%;
-      background: var(--card-bg);
-      border-radius: 18px;
-      padding: 14px 20px;
-      text-align: center;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-main);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-      min-height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background-color 0.2s;
-    }
-
-    /* 風格切換按鈕 */
-    .theme-switch-bar {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    .theme-pill {
-      font-size: 0.8rem;
-      padding: 6px 14px;
-      border-radius: 99px;
-      cursor: pointer;
-      border: 1px solid rgba(120, 120, 120, 0.2);
-      background: var(--card-bg);
-      color: var(--text-sub);
-      font-weight: 600;
-      transition: all 0.2s;
-    }
-
-    .theme-pill.active {
-      background: var(--primary);
-      color: #FFFFFF;
-      border-color: var(--primary);
     }
   </style>
 </head>
-<body data-theme="warm">
-
-  <div class="floating-container" id="floatingContainer"></div>
+<body>
 
   <div class="app-container">
-    <div class="top-bar">
-      <div class="title-group">
-        <h1>👏 自我鼓勵雙件套</h1>
-        <p>點擊鼓掌・無限誇誇・猛積功德</p>
-      </div>
-      <div class="control-buttons">
-        <button class="icon-btn" id="audioToggleBtn" title="音效開關">🔊 音效: 開</button>
-        <button class="icon-btn" id="resetBtn" title="重新計數">↺ 重置</button>
-      </div>
-    </div>
+    <!-- 頂部導航 -->
+    <header class="header-nav">
+      <button class="back-btn" id="backBtn" style="visibility: hidden;" onclick="switchScreen('screen1')">
+        ← 返回
+      </button>
+      <div class="app-title" id="pageTitle">自我鼓勵系統</div>
+      <div style="width: 50px;"></div>
+    </header>
 
-    <div class="score-card">
-      <div class="stat-box">
-        <div class="stat-label">累積功德</div>
-        <div class="stat-num" id="meritCount">0</div>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-box">
-        <div class="stat-label">鼓掌次數</div>
-        <div class="stat-num" id="clapCount">0</div>
-      </div>
-      <div class="stat-divider"></div>
-      <div class="stat-box">
-        <div class="stat-label">最高連擊</div>
-        <div class="stat-num" id="streakCount">0</div>
-      </div>
-    </div>
+    <!-- Screen 1: 主選單 -->
+    <div id="screen1" class="view-panel active">
+      <h1 class="menu-greeting">今日也要溫柔以待</h1>
+      <p class="menu-subtitle">給予自己一些肯定與平靜</p>
 
-    <div class="stage" id="clapStage">
-      <div class="sparks">
-        <div class="spark-line s1"></div>
-        <div class="spark-line s2"></div>
-        <div class="spark-line s3"></div>
-        <div class="spark-line s4"></div>
-      </div>
+      <div class="menu-grid">
+        <div class="menu-card" onclick="switchScreen('screen2')">
+          <div class="menu-icon">👏</div>
+          <div class="menu-info">
+            <h3>鼓掌鼓勵</h3>
+            <p>累積能量、激勵信心</p>
+          </div>
+        </div>
 
-      <div class="clapper-visual">
-        <div class="hand-pair">
-          <svg class="hand-svg hand-left" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M45 125 C30 110 32 85 45 70 C52 62 60 52 70 38 C75 30 84 30 88 38 C90 44 85 58 80 68 L105 50 C112 45 119 49 119 56 C119 62 108 76 96 86 L118 78 C126 75 131 82 128 89 C124 96 112 108 100 116 L112 112 C118 110 122 116 119 122 C114 130 95 142 75 142 C58 142 50 134 45 125 Z" 
-                  fill="var(--hand-fill)" stroke="var(--hand-stroke)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M68 85 L88 74" stroke="var(--hand-stroke)" stroke-width="3.5" stroke-linecap="round"/>
-            <path d="M72 105 L96 95" stroke="var(--hand-stroke)" stroke-width="3.5" stroke-linecap="round"/>
-          </svg>
-
-          <svg class="hand-svg hand-right" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M45 125 C30 110 32 85 45 70 C52 62 60 52 70 38 C75 30 84 30 88 38 C90 44 85 58 80 68 L105 50 C112 45 119 49 119 56 C119 62 108 76 96 86 L118 78 C126 75 131 82 128 89 C124 96 112 108 100 116 L112 112 C118 110 122 116 119 122 C114 130 95 142 75 142 C58 142 50 134 45 125 Z" 
-                  fill="var(--hand-fill)" stroke="var(--hand-stroke)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M68 85 L88 74" stroke="var(--hand-stroke)" stroke-width="3.5" stroke-linecap="round"/>
-            <path d="M72 105 L96 95" stroke="var(--hand-stroke)" stroke-width="3.5" stroke-linecap="round"/>
-          </svg>
+        <div class="menu-card" onclick="switchScreen('screen3')">
+          <div class="menu-icon">🪷</div>
+          <div class="menu-info">
+            <h3>敲木魚・積功德</h3>
+            <p>靜心沉澱、善念安詳</p>
+          </div>
         </div>
       </div>
-
-      <div class="stage-hint">點擊鼓掌 👏 激發好運</div>
     </div>
 
-    <div class="multiplier-bar">
-      <div class="mult-tag active" id="tag1">x1 普攻</div>
-      <div class="mult-tag" id="tag3">x3 爆擊</div>
-      <div class="mult-tag" id="tag5">x5 大神</div>
-      <div class="mult-tag" id="tag10">x10 宇宙無敵</div>
+    <!-- Screen 2: 拍手鼓掌 -->
+    <div id="screen2" class="view-panel">
+      <div class="counter-badge" id="clapCountText">累積鼓勵：0 次</div>
+
+      <div class="interactive-display">
+        <div id="clapArea"></div>
+        <button class="interactive-circle-btn" onclick="handleClap(event)">
+          <span class="interactive-emoji">👏</span>
+          <span class="tap-hint">點擊鼓掌</span>
+        </button>
+      </div>
+
+      <div class="encouragement-quote" id="clapQuote">
+        每一步都在向前，你已經做得很棒了。
+      </div>
+
+      <!-- 倍率切換 (x1, x3, x5, x10) -->
+      <div class="multiplier-group">
+        <button class="mult-btn active" onclick="setMultiplier(1, this)">x1</button>
+        <button class="mult-btn" onclick="setMultiplier(3, this)">x3</button>
+        <button class="mult-btn" onclick="setMultiplier(5, this)">x5</button>
+        <button class="mult-btn" onclick="setMultiplier(10, this)">x10</button>
+      </div>
     </div>
 
-    <div class="praise-banner" id="praiseBanner">
-      ✨ 點一下鼓掌，給最棒的自己加油！
-    </div>
+    <!-- Screen 3: 積功德 (電子木魚) -->
+    <div id="screen3" class="view-panel">
+      <div class="counter-badge" id="meritCountText">累計功德：0 次</div>
 
-    <div class="theme-switch-bar">
-      <span style="font-size: 0.8rem; color: var(--text-sub);">風格配色：</span>
-      <button class="theme-pill active" onclick="setTheme('warm')">元氣暖橘</button>
-      <button class="theme-pill" onclick="setTheme('cyber')">賽博功德</button>
-      <button class="theme-pill" onclick="setTheme('candy')">糖果多巴胺</button>
+      <div class="interactive-display">
+        <div id="meritArea"></div>
+        <button class="interactive-circle-btn" onclick="handleMerit(event)">
+          <span class="interactive-emoji">🪵</span>
+          <span class="tap-hint">敲擊木魚</span>
+        </button>
+      </div>
+
+      <div class="encouragement-quote">
+        萬物自有其時，心若安泰，歲月清幽。
+      </div>
     </div>
   </div>
 
   <script>
+    // 狀態管理
+    let currentMultiplier = 1;
+    let clapTotal = 0;
+    let meritTotal = 0;
+
+    const quotes = [
+      "每一步都在向前，你已經做得很棒了。",
+      "給自己一點時間，慢慢來最快。",
+      "今天也辛苦了，謝謝你堅持到底。",
+      "所有的付出，都會在悄然間開花結果。",
+      "深呼吸一口氣，放鬆一下肩膀吧。",
+      "無論今天如何，你始終值得被溫柔肯定。"
+    ];
+
+    // Web Audio API 柔和音效生成
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
     let audioCtx = null;
-    let audioEnabled = true;
 
     function initAudio() {
       if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
+        audioCtx = new AudioContext();
       }
     }
 
-    function playClapSound(isCrit) {
-      if (!audioEnabled) return;
+    // 播放鼓掌柔和脆音
+    function playClapSound() {
       initAudio();
-      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(320, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(140, audioCtx.currentTime + 0.08);
 
-      const now = audioCtx.currentTime;
+      gain.gain.setValueAtTime(0.35, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.08);
 
-      // 擬真拍手白噪音爆破音
-      const bufferSize = audioCtx.sampleRate * 0.08;
-      const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
-      const output = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        output[i] = Math.random() * 2 - 1;
-      }
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
 
-      const whiteNoise = audioCtx.createBufferSource();
-      whiteNoise.buffer = buffer;
-
-      const filter = audioCtx.createBiquadFilter();
-      filter.type = 'bandpass';
-      filter.frequency.setValueAtTime(isCrit ? 1400 : 1000, now);
-      filter.Q.setValueAtTime(1.5, now);
-
-      const gainNode = audioCtx.createGain();
-      gainNode.gain.setValueAtTime(0.7, now);
-      gainNode.gain.exponentialRampToValueAtTime(0.001, now + (isCrit ? 0.18 : 0.09));
-
-      whiteNoise.connect(filter);
-      filter.connect(gainNode);
-      gainNode.connect(audioCtx.destination);
-
-      whiteNoise.start(now);
-      whiteNoise.stop(now + 0.2);
-
-      // 暴擊獎勵音效（和弦）
-      if (isCrit) {
-        const osc = audioCtx.createOscillator();
-        const oscGain = audioCtx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(587.33, now);
-        osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
-        oscGain.gain.setValueAtTime(0.25, now);
-        oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-        osc.connect(oscGain);
-        oscGain.connect(audioCtx.destination);
-        osc.start(now);
-        osc.stop(now + 0.25);
-      }
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.08);
     }
 
-    const normalQuotes = [
-      "天啊！你也太棒了吧！",
-      "怎麼會有人這麼厲害～",
-      "哇！這個效率簡直神了！",
-      "今天也是閃閃發光的小天才！",
-      "功德圓滿，好運排隊找你！",
-      "給超努力的自己拍拍手！",
-      "簡直太優秀了，無可挑剔！",
-      "做得好！今天也是滿分的一天！",
-      "怎麼那麼聰明！無敵了吧！",
-      "太強了！完全被你折服！",
-      "狀態滿分！繼續衝呀！"
-    ];
-
-    const critQuotes = {
-      3: [
-        "⚡ 實力大爆發！直接起飛！",
-        "⚡ 哇塞！這到底是什麼神仙操作！",
-        "⚡ 功德 x3！好運擋都擋不住！"
-      ],
-      5: [
-        "🔥 怎麼那麼厲害！根本是超神表現！",
-        "🔥 宇宙級優秀！所有人都在為你鼓掌！",
-        "🔥 功德 x5 暴擊！福氣直接灌頂！"
-      ],
-      10: [
-        "👑 救命！天才降臨！你的能量已經突破天際了！",
-        "👑 歐皇大暴擊！全世界都要向你致敬！",
-        "👑 功德 x10 圓滿！人生大贏家非你莫屬！"
-      ]
-    };
-
-    let merits = 0;
-    let claps = 0;
-    let streak = 0;
-    let streakTimer = null;
-
-    try {
-      merits = parseInt(localStorage.getItem('merit_val') || '0', 10);
-      claps = parseInt(localStorage.getItem('clap_val') || '0', 10);
-    } catch(e) {}
-
-    const meritEl = document.getElementById('meritCount');
-    const clapEl = document.getElementById('clapCount');
-    const streakEl = document.getElementById('streakCount');
-    const stage = document.getElementById('clapStage');
-    const floatingContainer = document.getElementById('floatingContainer');
-    const praiseBanner = document.getElementById('praiseBanner');
-    const audioToggleBtn = document.getElementById('audioToggleBtn');
-    const resetBtn = document.getElementById('resetBtn');
-
-    const tags = {
-      1: document.getElementById('tag1'),
-      3: document.getElementById('tag3'),
-      5: document.getElementById('tag5'),
-      10: document.getElementById('tag10')
-    };
-
-    function updateStats() {
-      meritEl.textContent = merits.toLocaleString();
-      clapEl.textContent = claps.toLocaleString();
-      streakEl.textContent = streak;
-      try {
-        localStorage.setItem('merit_val', merits);
-        localStorage.setItem('clap_val', claps);
-      } catch(e) {}
-    }
-    updateStats();
-
-    function setActiveTag(multiplier) {
-      Object.values(tags).forEach(t => t.classList.remove('active'));
-      if (tags[multiplier]) {
-        tags[multiplier].classList.add('active');
-      }
-    }
-
-    function spawnParticles(x, y, color) {
-      const count = 12;
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        const size = Math.random() * 8 + 6;
-        p.style.width = size + 'px';
-        p.style.height = size + 'px';
-        p.style.background = color || 'var(--secondary)';
-        p.style.left = x + 'px';
-        p.style.top = y + 'px';
-
-        const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.5;
-        const dist = Math.random() * 70 + 40;
-        p.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
-        p.style.setProperty('--ty', `${Math.sin(angle) * dist}px`);
-
-        floatingContainer.appendChild(p);
-        setTimeout(() => p.remove(), 750);
-      }
-    }
-
-    function doClap(e) {
+    // 播放木魚低沉空靈音
+    function playMeritSound() {
       initAudio();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
 
-      stage.classList.remove('clapping');
-      void stage.offsetWidth;
-      stage.classList.add('clapping');
-      setTimeou
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(180, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(70, audioCtx.currentTime + 0.15);
+
+      gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.15);
+    }
+
+    // 畫面切換
+    function switchScreen(screenId) {
+      document.querySelectorAll('.view-panel').forEach(panel => {
+        panel.classList.remove('active');
+      });
+
+      const target = document.getElementById(screenId);
+      if (target) target.classList.add('active');
+
+      const backBtn = document.getElementById('backBtn');
+      const pageTitle = document.getElementById('pageTitle');
+
+      if (screenId === 'screen1') {
+        backBtn.style.visibility = 'hidden';
+        pageTitle.innerText = '自我鼓勵系統';
+      } else if (screenId === 'screen2') {
+        backBtn.style.visibility = 'visible';
+        pageTitle.innerText = '鼓掌喝采';
+      } else if (screenId === 'screen3') {
+        backBtn.style.visibility = 'visible';
+        pageTitle.innerText = '敲木魚積功德';
+      }
+    }
+
+    // 設定倍率
+    function setMultiplier(val, btn) {
+      currentMultiplier = val;
+      document.querySelectorAll('.mult-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // 點擊鼓掌事件
+    function handleClap(event) {
+      playClapSound();
+      clapTotal += currentMultiplier;
+      document.getElementById('clapCountText').innerText = `累積鼓勵：${clapTotal} 次`;
+
+      // 隨機更換一句鼓勵語
+      const randQuote = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById('clapQuote').innerText = randQuote;
+
+      spawnFloatText(event, `+${currentMultiplier} 鼓勵`, '#E09F67');
+    }
+
+    // 點擊功德木魚事件
+    function handleMerit(event) {
+      playMeritSound();
+      meritTotal += 1;
+      document.getElementById('meritCountText').innerText = `累計功德：${meritTotal} 次`;
+
+      spawnFloatText(event, '功德 +1', '#7A9A7E');
+    }
+
+    // 建立浮動飄升文字
+    function spawnFloatText(event, text, color) {
+      const container = event.currentTarget.parentElement;
+      const floatEl = document.createElement('div');
+      floatEl.className = 'floating-text';
+      floatEl.innerText = text;
+      floatEl.style.color = color;
+
+      // 隨機微小左右偏移，營造自然感
+      const randomOffset = (Math.random() - 0.5) * 36;
+      floatEl.style.left = `calc(50% + ${randomOffset}px - 30px)`;
+      floatEl.style.top = '15px';
+
+      container.appendChild(floatEl);
+
+      setTimeout(() => {
+        floatEl.remove();
+      }, 850);
+    }
+  </script>
+</body>
+</html>
